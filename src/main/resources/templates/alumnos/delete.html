@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Eliminar los datos de alumno</title>
+    </head>
+    <body>
+        <p><a th:href="@{/alumnos}">Atrás</a></p>
+        
+        <h1>Eliminar datos</h1>
+        <blockquote>
+            Nombre: <span th:text="${alumno.nombre}" /><br>
+            Apellidos: <span th:text="${alumno.apellido}" /><br>
+            Fecha de nacimiento: <span th:text="${alumno.fechaNacimiento}" />
+        </blockquote>
+        <p>Esto no tiene vuelta atrás. Tú verás.</p>
+        
+        <form method="POST" th:action="@{/alumnos/{id}/eliminar(id=${alumno.id})}">            
+            <button type="submit">Sin miedo al éxito</button>
+        </form>
+    </body>
+</html>

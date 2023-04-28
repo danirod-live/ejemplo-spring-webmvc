@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Gestión de matrículas</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <p>
+            <a href="/matriculas/nuevo">
+                Nueva matrícula
+            </a>
+        </p>
+        
+        <p th:if="${matriculas.empty}">
+            No hay matrículas en el sistema.
+        </p>
+        <table border="1" th:unless="${matriculas.empty}">
+            <thead>
+                <tr>
+                    <th>Asignatura</th>
+                    <th>Alumno</th>
+                    <th>Curso</th>
+                    <th>Nota</th>
+                    <th colspan="2">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="matricula:${matriculas}">
+                    <td th:text="${matricula.asignatura.nombre}" />
+                    <td th:text="${matricula.alumno.nombre + ' ' + matricula.alumno.apellido}"/>
+                    <td th:text="${matricula.curso}" />
+                    <td th:text="${matricula.calificacion}" />
+                    <td><a th:href="@{/matriculas/{id}/editar(id=${matricula.id})}">Editar</a></td>
+                    <td><a th:href="@{/matriculas/{id}/borrar(id=${matricula.id})}">Eliminar</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+</html>

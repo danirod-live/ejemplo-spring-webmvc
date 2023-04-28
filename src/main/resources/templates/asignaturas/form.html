@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Formulario de asignatura</title>
+    </head>
+    <body>
+        <p>
+            <a th:href="@{/asignaturas}">
+                Atrás
+            </a>
+        </p>
+        
+        <form method="POST" th:object="${asignatura}" th:action="@{/asignaturas/editar}">
+            <input type="hidden" name="id" th:if="${asignatura.id > 0}" th:value="${asignatura.id}" />
+            <input type="hidden" name="action" th:if="${asignatura.id == 0}" value="insert" />
+            <input type="hidden" name="action" th:unless="${asignatura.id == 0}" value="update" />
+            
+            <p>
+                Nombre: <input type="text" th:field="*{nombre}" />
+            </p>
+            
+            <p>
+                Profesor:
+                <select th:field="*{profesor}">
+                    <option th:each="p:${profesores}" th:value="${p.key}" th:text="${p.value}" />
+                </select>
+            </p>
+            
+            <p>
+                <button type="submit">Enviar</button>
+            </p>
+        </form>
+    </body>
+</html>

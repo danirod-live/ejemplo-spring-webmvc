@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Formulario de matrícula</title>
+    </head>
+    <body>
+        <p>
+            <a th:href="@{/asignaturas}">
+                Atrás
+            </a>
+        </p>
+        
+        <form method="POST" th:object="${matricula}" th:action="@{/matriculas/editar}">
+            <input type="hidden" name="id" th:if="${matricula.id > 0}" th:value="${matricula.id}" />
+            <input type="hidden" name="action" th:if="${matricula.id == 0}" value="insert" />
+            <input type="hidden" name="action" th:unless="${matricula.id == 0}" value="update" />
+            
+            <p>
+                Asignatura:
+                <select th:field="*{asignatura}">
+                    <option th:each="a:${asignaturas}" th:value="${a.id}" th:text="${a.nombre}" />
+                </select>
+            </p>
+            
+            <p>
+                Alumno:
+                <select th:field="*{alumno}">
+                    <option th:each="a:${alumnos}" th:value="${a.id}" th:text="${a.nombre + ' ' + a.apellido}" />
+                </select>
+            </p>
+            
+            <p>
+                Curso: <input type="text" th:field="*{curso}" />
+            </p>
+            
+            <p>
+                Calificación: <input type="text" th:field="*{calificacion}" />
+            </p>
+            
+            <p>
+                <button type="submit">Enviar</button>
+            </p>
+        </form>
+    </body>
+</html>

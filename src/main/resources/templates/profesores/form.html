@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Formulario de profesor</title>
+    </head>
+    <body>
+        <p>
+            <a th:href="@{/profesores}">
+                Atrás
+            </a>
+        </p>
+        
+        <form method="POST" th:object="${profesor}" th:action="@{/profesores/editar}">
+            <input type="hidden" name="id" th:if="${profesor.id > 0}" th:value="${profesor.id}" />
+            <input type="hidden" name="action" th:if="${profesor.id == 0}" value="insert" />
+            <input type="hidden" name="action" th:unless="${profesor.id == 0}" value="update" />
+
+            <p>
+                Nombre: <input type="text" th:field="*{nombre}" />
+            </p>
+            <p>
+                Apellidos:
+                <input type="text" th:field="*{apellido}" />
+            </p>
+            <p>
+                Fecha de contratación:
+                <input type="date" th:field="*{fechaContratacion}" />
+            </p>
+            <p>
+                <button type="submit">Enviar</button>
+            </p>
+        </form>
+    </body>
+</html>

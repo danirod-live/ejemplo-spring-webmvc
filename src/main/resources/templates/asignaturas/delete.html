@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Eliminar los datos de asignatura</title>
+    </head>
+    <body>
+        <p><a th:href="@{/asignaturas}">Atrás</a></p>
+        
+        <h1>Eliminar datos</h1>
+        <blockquote th:inline="text">
+            Nombre: [[${asignatura.nombre}]]<br>
+            Quien la imparte: <span>[[${asignatura.profesor.nombre}]] [[${asignatura.profesor.apellido}]]</span>
+        </blockquote>
+        <p>Esto no tiene vuelta atrás. Tú verás.</p>
+        
+        <form method="POST" th:action="@{/asignaturas/{id}/borrar(id=${asignatura.id})}">            
+            <button type="submit">Sin miedo al éxito</button>
+        </form>
+    </body>
+</html>

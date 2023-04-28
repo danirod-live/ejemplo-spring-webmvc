@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Lista de alumnos</title>
+    </head>
+    <body>
+        <p>
+            <a href="/alumnos/nuevo">
+                Nuevo alumno
+            </a>
+        </p>
+        
+        <p th:if="${alumnos.empty}">
+            No hay alumnos en el sistema.
+        </p>
+        <table th:unless="${alumnos.empty}" border="1">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Apellidos</th>
+                    <th>Fecha de nacimiento</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="alumno:${alumnos}">
+                    <td th:text="${alumno.id}">${alumno.id}</td>
+                    <td th:text="${alumno.nombre}">${alumno.nombre}</td>
+                    <td th:text="${alumno.apellido}">${alumno.apellidos}</td>
+                    <td th:text="${alumno.fechaNacimiento}">${alumno.fechaNacimiento}</td>
+                    <td><a th:href="@{/alumnos/{id}/editar(id=${alumno.id})}">Editar</a></td>
+                    <td><a th:href="@{/alumnos/{id}/eliminar(id=${alumno.id})}">Eliminar</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+</html>

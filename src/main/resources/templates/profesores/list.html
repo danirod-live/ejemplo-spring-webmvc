@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Lista de profesores</title>
+    </head>
+    <body>
+        <p>
+            <a href="/profesores/nuevo">
+                Nuevo profesor
+            </a>
+        </p>
+        
+        <p th:if="${profesores.empty}">
+            No hay profesores en el sistema.
+        </p>
+        <table th:unless="${profesores.empty}" border="1">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Apellidos</th>
+                    <th>Fecha de contratación</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="profesor:${profesores}">
+                    <td th:text="${profesor.id}">${profesor.id}</td>
+                    <td th:text="${profesor.nombre}">${profesor.nombre}</td>
+                    <td th:text="${profesor.apellido}">${profesor.apellidos}</td>
+                    <td th:text="${profesor.fechaContratacion}">${profesor.fechaContratacion}</td>
+                    <td><a th:href="@{/profesores/{id}/editar(id=${profesor.id})}">Editar</a></td>
+                    <td><a th:href="@{/profesores/{id}/eliminar(id=${profesor.id})}">Eliminar</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Gestión de asignaturas</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <p>
+            <a href="/asignaturas/nuevo">
+                Nueva asignatura
+            </a>
+        </p>
+        
+        <p th:if="${asignaturas.empty}">
+            No hay asignaturas en el sistema.
+        </p>
+        <table border="1" th:unless="${asignaturas.empty}">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Profesor que la da</th>
+                    <th colspan="2">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="asignatura:${asignaturas}">
+                    <td th:text="${asignatura.nombre}" />
+                    <td th:text="${asignatura.profesor.nombre + ' ' + asignatura.profesor.apellido}"/>
+                    <td><a th:href="@{/asignaturas/{id}/editar(id=${asignatura.id})}">Editar</a></td>
+                    <td><a th:href="@{/asignaturas/{id}/borrar(id=${asignatura.id})}">Eliminar</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+</html>

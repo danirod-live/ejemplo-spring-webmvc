@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Eliminar los datos de matrícula</title>
+    </head>
+    <body>
+        <p><a th:href="@{/matriculas}">Atrás</a></p>
+        
+        <h1>Eliminar datos</h1>
+        <blockquote th:inline="text">
+            Alumno: [[${matricula.alumno.nombre}]] [[${matricula.alumno.apellido}]]<br>
+            Asignatura: [[${matricula.asignatura.nombre}]]<br>
+            Curso: [[${matricula.curso}]]<br>
+            Nota: [[${matricula.calificacion}]]
+        </blockquote>
+        <p>Esto no tiene vuelta atrás. Tú verás.</p>
+        
+        <form method="POST" th:action="@{/matriculas/{id}/borrar(id=${matricula.id})}">            
+            <button type="submit">Sin miedo al éxito</button>
+        </form>
+    </body>
+</html>
